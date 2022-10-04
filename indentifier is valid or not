@@ -16,3 +16,11 @@ int main()
  }
  return 0;
 }
+
+
+OUTPUT:
+
+Enter the string:123helow
+The string is not a valid identifier
+Enter the string: hello
+The string is valid identifier
