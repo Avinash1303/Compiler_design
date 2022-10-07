@@ -16,7 +16,3 @@ fclose(yyin);
 
 
 
-
-OUTPUT:
-
-no of comment line:2 
