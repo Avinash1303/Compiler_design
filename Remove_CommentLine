@@ -13,3 +13,10 @@ printf("no of comment line : %d",n);
 fclose(yyout);
 fclose(yyin);
 }
+
+
+
+
+OUTPUT:
+
+no of comment line:2 
