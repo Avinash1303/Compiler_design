@@ -9,7 +9,7 @@ int main(char argc[],char *argv[]){
 yyin=fopen(argv[1],"r");
 yyout=fopen("sim.txt","w");
 yylex();
-printf("no of comment line : %d",n);
+printf("No of comment line : %d",n);
 fclose(yyout);
 fclose(yyin);
 }
