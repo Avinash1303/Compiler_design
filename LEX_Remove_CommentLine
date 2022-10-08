@@ -2,7 +2,7 @@
 int n=0;
 %}
 %%
-"/*"[a-z \n]+"*/"|"//"[a-z /t]+ {n++;}
+"/*"[ a-z \n]+"*/"|"//"[a-z /t]+ {n++;}
 %%
 int yywrap(void){}
 int main(char argc[],char *argv[]){
