@@ -1,97 +1,45 @@
 %{
-
-#undef yywrap
-#define yywrap() 1 
-int f1=0,f2=0;
-char oper;
-float op1=0,op2=0,ans=0;
-void eval();
-
+#include
+float p,flag,answer;
+char cc;
 %}
-
-DIGIT [0-9]
-NUM {DIGIT}+(\.{DIGIT}+)?
-OP [*/+-]
-
+digit [0-9]+
+op “+”|”-“|”*”|”/”
 %%
-
-{NUM} {
-	if(f1==0)
-	{
-		op1=atof(yytext);
-		f1=1;
-	}
-
-	else if(f2==-1)
-	{
-		op2=atof(yytext);
-		f2=1;
-	}
-
-	if((f1==1) && (f2==1))
-	{
-		eval();
-		f1=0;
-		f2=0;
-
-	}
+{digit} {
+p=atof(yytext);
+if(flag==0)
+{
+answer=p;
+flag=1;
 }
-
-{OP} {
-	
-	oper=(char) *yytext;
-	f2=-1;
+else
+{
+switch(cc)
+{
+case ‘+’:answer=answer+p;
+case ‘-‘:answer=answer-p;
+case ‘*’:answer=answer*p;
+case ‘/’:answer=answer/p;
 }
-
-[\n] {
-
-	if(f1==1 && f2==1)
-	{	
-		eval;
-		f1=0;
-		f2=0;
-	}
-}	
-
+}
+}
+{op} {
+if(strcmp(yytext,”+”)==0)
+cc=’+’;
+if(strcmp(yytext,”-“)==0)
+cc=’-‘;
+if(strcmp(yytext,”*”)==0)
+cc=’*’;
+if(strcmp(yytext,”/”)==0)
+cc=’/’;
+}
+! {printf(“n Final Answer = %f”,answer);exit(0);}
 %%
-
-
 int main()
 {
-	yylex();
-}
-
-
-void eval()
-{
-	switch(oper)
-	{
-		case '+':
-			ans=op1+op2;
-			break;
-
-		case '-':
-			ans=op1-op2;
-			break;
-
-		case '*':
-			ans=op1*op2;
-			break;
-
-		case '/':
-			if(op2==0)
-			{
-				printf("ERROR");
-				return;
-			}
-			else
-			{
-				ans=op1/op2;
-			}
-			break;
-		default:
-			printf("operation not available");
-			break;
-	}
-	printf("The answer is = %lf",ans);
+flag=answer=0;
+printf(“n Enter the Question String :- “);
+yylex();
+return(0);
 }
